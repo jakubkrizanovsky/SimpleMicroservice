@@ -1,4 +1,4 @@
-FROM almalinux:10
+FROM almalinux:8
 
 RUN dnf install -y python3
 RUN dnf install -y python3-pip

@@ -1,0 +1,43 @@
+---
+- name: Create backend directory
+  ansible.builtin.file:
+    path: /opt/simple-microservice/backend
+    state: directory
+
+- name: Sync backend source code to target
+  ansible.builtin.copy:
+    src: ../backend/
+    dest: /opt/simple-microservice/backend/
+
+- name: Create frontend directory
+  ansible.builtin.file:
+    path: /opt/simple-microservice/frontend
+    state: directory
+
+- name: Sync frontend source code to target
+  ansible.builtin.copy:
+    src: ../frontend/
+    dest: /opt/simple-microservice/frontend/
+
+- name: Sync docker compose file
+  ansible.builtin.copy:
+    src: ../docker-compose.yml
+    dest: /opt/simple-microservice/
+
+- name: Run Docker Compose (Build and Start)
+  community.docker.docker_compose_v2:
+    project_src: /opt/simple-microservice
+    build: always
+    state: present
+
+- name: Expose port on firewall
+  ansible.builtin.iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: "{{ app_port }}"
+    jump: ACCEPT
+
+- name: Save current state of the firewall in system file
+  community.general.iptables_state:
+    state: saved
+    path: /etc/network/iptables

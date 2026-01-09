@@ -86,6 +86,16 @@ output "docker_server_ips" {
   value = "${opennebula_virtual_machine.docker-vm.*.ip}"
 }
 
+# generate inventory file for Ansible
+resource "local_file" "hosts_cfg" {
+  content = templatefile("${path.module}/templates/hosts.tpl",
+    {
+      dockerservers = opennebula_virtual_machine.docker-vm.*.ip
+    }
+  )
+  filename = "outputs/hosts"
+}
+
 #
 # EOF
 #

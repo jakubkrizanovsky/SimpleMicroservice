@@ -1,0 +1,7 @@
+---
+- name: Initial Server Configuration
+  hosts: dockerservers
+  gather_facts: true
+  roles:
+    - docker
+    - app
