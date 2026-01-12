@@ -11,8 +11,8 @@ variable "one_password"  {
 variable "ssh_privkey_path" {
     description = "SSH private key file path"
 }
-variable "vm_ssh_pubkey" {
-    description = "SSH public key used for login as root into the VM instance"
+variable "ssh_pubkey_path" {
+    description = "SSH public key file path used for login as root into the VM instance"
 }
 variable "vm_admin_user" {
     description = "Username of the admin user"

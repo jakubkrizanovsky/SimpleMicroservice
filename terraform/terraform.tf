@@ -35,7 +35,7 @@ resource "opennebula_virtual_machine" "docker-vm" {
   context = {
     NETWORK  = "YES"
     HOSTNAME = "$NAME"
-    SSH_PUBLIC_KEY = "${var.vm_ssh_pubkey}"
+    SSH_PUBLIC_KEY = file(var.ssh_pubkey_path)
   }
   os {
     arch = "x86_64"
