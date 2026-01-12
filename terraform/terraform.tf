@@ -74,8 +74,7 @@ resource "opennebula_virtual_machine" "docker-vm" {
       "export INIT_LOG=${var.vm_node_init_log}",
       "export INIT_HOSTNAME=${self.name}",
       "touch ${var.vm_node_init_log}",
-      "sh /tmp/init-node.sh",
-      "reboot"
+      "sh /tmp/init-node.sh"
     ]
   }
 }

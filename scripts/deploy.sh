@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# read env variables
+if [ -f .env ]; then
+    export $(grep -v '^#' .env | xargs)
+fi
+
 # prepare node using terraform
 cd terraform
 terraform init
