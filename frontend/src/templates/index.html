@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleMicroservice</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; padding-top: 50px; background-color: #eceff1; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 350px; }
+        h1 { color: #2c3e50; font-size: 1.4rem; margin-top: 0; }
+        input[type="text"] { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background-color: #007bff; border: none; border-radius: 4px; color: white; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #0056b3; }
+        .result-box { margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; }
+        .message { color: #2ecc71; font-weight: 600; }
+        .secret { margin-top: 10px; padding: 10px; background-color: #fce4ec; border-left: 5px solid #f06292; color: #880e4f; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Microservice Portal</h1>
+        
+        <form method="POST">
+            <input type="text" name="username" placeholder="Enter your name..." required>
+            <button type="submit">Submit to Service</button>
+        </form>
+
+        {% if message %}
+        <div class="result-box">
+            <p class="message">{{ message }}</p>
+            
+            {% if secret %}
+                <div class="secret">
+                    <strong>Top Secret:</strong> {{ secret }}
+                </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
